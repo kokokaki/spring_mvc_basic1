@@ -15,7 +15,7 @@ public class BasicV1Controller {
     //요청 처리 메서드
 
     @GetMapping("/v1/hello") // 클라이언트가 /v1/hello라고 GET으로 요청했을 시 작동
-    @ResponseBody  //응답 내용에 관한 것
+    @ResponseBody  //응답 내용에 관한 것, 브라우저에게 데이터를 직접 리턴
     public String hello() {
         System.out.println("/v1/hello GET!!! 가나다라마바사");
         return "선생님컴퓨터: 안녕~~ 손님~~!!";
