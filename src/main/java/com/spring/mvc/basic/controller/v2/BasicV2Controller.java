@@ -24,7 +24,7 @@ public class BasicV2Controller {
 
     @GetMapping("/gugu7")
     public String gugu7() {
-        return "/WEB-INF/views/gugu7.jsp";
+        return "gugu7";
     }
 
     // 요청 파라미터 읽기(쿼리스트링 읽기): 클라이언트가 서버로 전송한 데이터
@@ -45,13 +45,13 @@ public class BasicV2Controller {
         System.out.println(petInfo);
         //jsp파일에게 데이터를 전송
         model.addAttribute("pi", petInfo);
-        return "/WEB-INF/views/pet-result.jsp";
+        return "pet-result";
     }
 
     // pet-form.jsp를 열어주려면?
     @GetMapping("/pet/form")
     public String petForm() {
-        return "/WEB-INF/views/pet-form.jsp";
+        return "pet-form";
     }
 
     //=========== 실습문제 ===============//
@@ -62,7 +62,7 @@ public class BasicV2Controller {
 
     @GetMapping("/user/form")
     public String userForm() {
-        return "/WEB-INF/views/register.jsp";
+        return "register";
     }
 
     /*
@@ -74,7 +74,7 @@ public class BasicV2Controller {
     public String join(User user, Model model) {
         System.out.println("/user/join POST! - " + user);
         model.addAttribute("u", user);
-        return "/WEB-INF/views/user-result.jsp";
+        return "user-result";
     }
 
 
@@ -84,5 +84,29 @@ public class BasicV2Controller {
            ex) 아이디는 ??이고 비밀번호는 ??입니다. 이름은 ??이고 ~~~
 
      */
+
+
+    //======= bmi 문제 ======//
+
+    @GetMapping("/bmi/form")
+    public String bmiForm() {
+        return "bmi-form";
+    }
+
+    @PostMapping("/bmi/calc")
+    public String bmiCalc(BmiData bmiData, Model model) {
+        //공식 : kg / (m * m)
+        double kg = bmiData.getWeight();
+        double m = bmiData.getHeight() / 100;
+        double bmi = kg / (m * m);
+
+        //반올림
+        bmi = Math.round(bmi * 100) / 100.0;
+
+        model.addAttribute("userName", bmiData.getName());
+        model.addAttribute("bmi", bmi);
+
+        return "bmi-result";
+    }
 
 }
