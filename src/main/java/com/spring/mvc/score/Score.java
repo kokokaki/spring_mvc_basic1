@@ -1,5 +1,10 @@
 package com.spring.mvc.score;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Setter @Getter @ToString
 public class Score {
     //누적되는 순차번호를 만들기 위함
     private static int seq;
@@ -12,4 +17,16 @@ public class Score {
     private int stuNum; //학번
     private int total;  //총점
     private double average; //평균
+
+    public Score() {
+        this.stuNum = ++seq;
+    }
+
+    public Score(String name, int kor, int eng, int math) {
+        this();
+        this.name = name;
+        this.kor = kor;
+        this.eng = eng;
+        this.math = math;
+    }
 }

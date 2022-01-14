@@ -40,7 +40,7 @@
         }
 
         section.score {
-            padding: 200px 50px 100px;
+            /* padding: 200px 50px 100px; */
             font-size: 1.5em;
         }
     </style>
