@@ -53,4 +53,14 @@ public class ScoreController {
         scoreRepository.remove(stuNum); //삭제 명령 위임
         return "redirect:/score/list";
     }
+
+    //점수 상세보기 요청
+    @GetMapping("/score/detail")
+    public String detail(int stuNum, Model model) {
+        log.info("/score/detail GET! - " + stuNum);
+        Score score = scoreRepository.findOne(stuNum);
+        model.addAttribute("s", score);
+        return "score/detail";
+    }
+
 }
