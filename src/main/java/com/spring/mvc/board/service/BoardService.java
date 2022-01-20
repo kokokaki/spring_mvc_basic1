@@ -24,13 +24,13 @@ public class BoardService {
         List<Board> boardList = boardRepository.getArticles();
 
         //중간처리: 리스트의 인덱스를 전부 뒤집기
-//        boardList.sort(Collections.reverseOrder());
-        List<Board> sortedList = new ArrayList<>();
-        for (int i = boardList.size() - 1; i >= 0 ; i--) {
-            sortedList.add(boardList.get(i));
-        }
+//        List<Board> sortedList = new ArrayList<>();
+//        for (int i = boardList.size() - 1; i >= 0 ; i--) {
+//            sortedList.add(boardList.get(i));
+//        }
+//        return sortedList;
 
-        return sortedList;
+        return boardList;
     }
 
 
@@ -44,7 +44,7 @@ public class BoardService {
     }
 
     public Board getContent(int boardNo) {
-
+        boardRepository.upViewCount(boardNo);
         return boardRepository.getContent(boardNo);
     }
 

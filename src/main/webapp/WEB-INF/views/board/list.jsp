@@ -122,9 +122,9 @@
                         <td>
                             ${b.title}
                         </td>
-                        <td>0</td>
+                        <td>${b.viewCnt}</td>
                         <td>
-                            0000-00-00                          
+                            <fmt:formatDate value="${b.regDate}" pattern="yyyy년 MM월 dd일 a hh:mm" />
                         </td>
                     </tr>
                 </c:forEach>

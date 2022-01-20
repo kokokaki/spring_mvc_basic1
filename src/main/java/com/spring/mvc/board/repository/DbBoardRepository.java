@@ -29,7 +29,8 @@ public class DbBoardRepository implements BoardRepository {
             Class.forName(driverName);
             Connection conn = DriverManager.getConnection(url, uid, upw);
 
-            String sql = "SELECT * FROM board";
+            String sql = "SELECT * FROM board " +
+                        "ORDER BY board_no DESC";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
 
@@ -132,4 +133,26 @@ public class DbBoardRepository implements BoardRepository {
             e.printStackTrace();
         }
     }
+
+    //조회수 상승 처리
+    public void upViewCount(int boardNo) {
+        try {
+            Class.forName(driverName);
+            Connection conn = DriverManager.getConnection(url, uid, upw);
+
+            String sql = "UPDATE board " +
+                        "SET view_cnt = view_cnt + 1 " +
+                        "WHERE board_no=?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            pstmt.setInt(1, boardNo);
+
+            int result = pstmt.executeUpdate(); // 성공한 쿼리의 수 리턴
+            if (result == 1) System.out.println("삭제 성공!");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

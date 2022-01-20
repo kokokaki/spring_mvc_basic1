@@ -50,4 +50,6 @@ public class MemoryBoardRepository implements BoardRepository {
         if (boardMap.containsKey(boardNo))
             boardMap.put(boardNo, article); //수정
     }
+
+
 }
