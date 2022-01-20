@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -21,6 +24,13 @@ public class Board {
     public Board() {
         System.out.println("board constructor call!!");
         this.boardNo = ++sequence;
+    }
+
+    public Board(ResultSet rs) throws SQLException {
+        this.boardNo = rs.getInt("board_no");
+        this.writer = rs.getString("writer");
+        this.title = rs.getString("title");
+        this.content = rs.getString("content");
     }
 
     public Board(String writer, String title, String content) {

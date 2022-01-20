@@ -56,14 +56,14 @@ public class BoardController {
     //글 상세보기 요청
     @GetMapping("/board/content")
     public String content(int boardNo, Model model) {
-        model.addAttribute("article", boardService.getContent(boardNo));
+        model.addAttribute("b", boardService.getContent(boardNo));
         return "board/content";
     }
 
     //글 수정하기 화면요청
     @GetMapping("/board/modify")
     public String modify(int boardNo, Model model) {
-        model.addAttribute("article", boardService.getContent(boardNo));
+        model.addAttribute("board", boardService.getContent(boardNo));
         return "board/modify";
     }
 
