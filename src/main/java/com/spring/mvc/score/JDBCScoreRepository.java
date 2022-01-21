@@ -26,7 +26,8 @@ public class JDBCScoreRepository implements ScoreRepository {
             Class.forName(driverName);
             Connection conn = DriverManager.getConnection(url, uid, upw);
 
-            String sql = "INSERT INTO score VALUES (seq_score.nextval, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO score " +
+                    "VALUES (seq_score.nextval, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
 
             pstmt.setString(1, score.getName());

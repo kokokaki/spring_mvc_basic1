@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace에는 사용할 인터페이스의 패키지포함 풀네임을 적습니다. -->
+<mapper namespace="com.spring.mvc.board.repository.BoardMapper">
+
+    <!--  메서드들을 하나씩 구현합니다.  -->
+    <!--  id에는 메서드 이름  -->
+    <insert id="insertArticle">
+        INSERT INTO board
+            (board_no, title, writer, content)
+        VALUES
+            (seq_board.nextval, #{title}, #{writer}, #{content})
+    </insert>
+
+    <delete id="deleteArticle">
+        DELETE FROM board
+        WHERE board_no = #{boardNo}
+    </delete>
+
+    <!--
+       # SELECT 문 처리를 위한 자바 필드명과 테이블 컬럼명 매핑
+       - 자바의 이름관례와 SQL의 관례의 차이에서 오는 표기법의 불일치를
+       해소하기 위해 1:1데이터 매핑을 해주는 작업
+      -->
+    <resultMap id="boardMap" type="com.spring.mvc.board.domain.Board">
+        <!--  property에는 자바필드, column에는 데이터베이스컬럼명      -->
+        <result property="boardNo" column="board_no" />
+        <result property="viewCnt" column="view_cnt" />
+        <result property="regDate" column="reg_date" />
+    </resultMap>
+
+    <select id="getArticles" resultMap="boardMap">
+        SELECT * FROM board
+        ORDER BY board_no DESC
+    </select>
+
+    <select id="getContent" resultMap="boardMap">
+        SELECT * FROM board
+        WHERE board_no = #{boardNo}
+    </select>
+
+    <update id="modifyArticle">
+        UPDATE board
+        SET writer=#{writer}, content=#{content}, title=#{title}
+        WHERE board_no = #{boardNo}
+    </update>
+
+    <update id="upViewCount">
+        UPDATE board
+        SET view_cnt = view_cnt + 1
+        WHERE board_no = #{boardNo}
+    </update>
+
+</mapper>

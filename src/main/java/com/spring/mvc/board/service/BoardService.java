@@ -1,6 +1,7 @@
 package com.spring.mvc.board.service;
 
 import com.spring.mvc.board.domain.Board;
+import com.spring.mvc.board.repository.BoardMapper;
 import com.spring.mvc.board.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,10 +13,10 @@ import java.util.List;
 @Service
 public class BoardService {
 
-    private final BoardRepository boardRepository;
+    private final BoardMapper boardRepository;
 
     @Autowired
-    public BoardService(@Qualifier("dr") BoardRepository boardRepository) {
+    public BoardService(BoardMapper boardRepository) {
         this.boardRepository = boardRepository;
     }
 
