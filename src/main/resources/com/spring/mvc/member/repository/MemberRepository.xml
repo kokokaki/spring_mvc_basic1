@@ -24,12 +24,12 @@
     </select>
 
     <!--  아이디 중복확인 기능  -->
-    <select id="isDuplicateId">
+    <select id="isDuplicateId" resultType="int">
         SELECT COUNT(*) FROM member
         WHERE account = #{inputKeyword}
     </select>
 
-    <select id="isDuplicateEmail">
+    <select id="isDuplicateEmail" resultType="int">
         SELECT COUNT(*) FROM member
         WHERE email = #{inputKeyword}
     </select>
