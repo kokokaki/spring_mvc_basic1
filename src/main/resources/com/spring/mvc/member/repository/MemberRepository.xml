@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.mvc.member.repository.MemberRepository">
+
+    <!--  회원가입 기능  -->
+    <insert id="register">
+        INSERT INTO member
+            (account, password, name, email, auth)
+        VALUES
+            (#{account}, #{password}, #{name}, #{email}, #{auth})
+    </insert>
+
+    <resultMap id="memberMap" type="com.spring.mvc.member.domain.Member">
+        <result column="reg_date" property="regDate" />
+    </resultMap>
+
+    <!-- 단일 회원 조회기능  -->
+    <select id="findMember" resultMap="memberMap">
+        SELECT * FROM member
+        WHERE account = #{account}
+    </select>
+
+    <!--  아이디 중복확인 기능  -->
+    <select id="isDuplicateId">
+        SELECT COUNT(*) FROM member
+        WHERE account = #{inputKeyword}
+    </select>
+
+    <select id="isDuplicateEmail">
+        SELECT COUNT(*) FROM member
+        WHERE email = #{inputKeyword}
+    </select>
+
+</mapper>

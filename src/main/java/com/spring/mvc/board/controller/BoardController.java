@@ -43,9 +43,6 @@ public class BoardController {
         model.addAttribute("articles", articles);
         return "board/list";
     }
-
-
-
     //글 삭제 요청
     @GetMapping("/board/delete")
     public String delete(int boardNo) {
