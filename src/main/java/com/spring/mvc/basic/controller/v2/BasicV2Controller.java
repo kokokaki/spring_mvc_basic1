@@ -12,7 +12,7 @@ public class BasicV2Controller {
 
     //@ResponseBody를 붙이면 문자열이 그대로 브라우저에게 전달됨
     // 떼면 해당 문자열의 경로에 있는 파일을 열어줌
-    @GetMapping("/join")
+    @GetMapping("/join2222")
     public String join() {
         return "/register.html"; //열어줄 파일의 경로
     }
