@@ -10,9 +10,9 @@
     <!--  id에는 메서드 이름  -->
     <insert id="insertArticle">
         INSERT INTO board
-            (board_no, title, writer, content)
+            (board_no, title, writer, content, account)
         VALUES
-            (seq_board.nextval, #{title}, #{writer}, #{content})
+            (seq_board.nextval, #{title}, #{writer}, #{content}, #{account})
     </insert>
 
     <delete id="deleteArticle">

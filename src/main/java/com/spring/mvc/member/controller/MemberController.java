@@ -70,4 +70,15 @@ public class MemberController {
         return "member/login";
     }
 
+    //로그아웃 요청
+    @GetMapping("/sign-out")
+    public String signOut(HttpSession session) {
+        Member loginUser = (Member) session.getAttribute("loginUser");
+        if (loginUser != null) {
+            session.removeAttribute("loginUser");
+            session.invalidate();//세션 무효화
+        }
+        return "redirect:/";
+    }
+
 }

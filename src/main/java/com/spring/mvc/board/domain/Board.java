@@ -23,6 +23,7 @@ public class Board {
     private String content; //글내용
     private int viewCnt; //조회수
     private Timestamp regDate; //글작성 일자시간
+    private String account;
 
     public Board() {
         System.out.println("board constructor call!!");
@@ -36,6 +37,7 @@ public class Board {
         this.content = rs.getString("content");
         this.viewCnt = rs.getInt("view_cnt");
         this.regDate = rs.getTimestamp("reg_date");
+        this.account = rs.getString("account");
     }
 
     public Board(String writer, String title, String content) {

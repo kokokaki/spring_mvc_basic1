@@ -90,10 +90,11 @@
 
                 <div class="btn-group btn-group-lg custom-btn-group" role="group">
 
-                    
-					<button id="mod-btn" type="button" class="btn btn-warning">수정</button>
-					<button id="del-btn" type="button" class="btn btn-danger">삭제</button>
-                    
+
+                    <c:if test="${b.account == loginUser.account || loginUser.auth == 'ADMIN'}">
+                        <button id="mod-btn" type="button" class="btn btn-warning">수정</button>
+                        <button id="del-btn" type="button" class="btn btn-danger">삭제</button>
+                    </c:if>
 
                     <button id="list-btn" type="button" class="btn btn-dark">목록</button>
                 </div>
