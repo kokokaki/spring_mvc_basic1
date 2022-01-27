@@ -5,11 +5,11 @@
 <header class="common">
     <div class="inner-header">
         <h1 class="logo">
-            <a href="#">
+            <a href="/">
                 <img src="/img/logo.png" alt="로고이미지">
             </a>
         </h1>
-        <h2 class="intro-text">Welcome </h2>
+        <h2 class="intro-text">Welcome ${loginUser.name}</h2>
         <a href="#" class="menu-open">
             <span class="menu-txt">MENU</span>
             <span class="lnr lnr-menu"></span>
@@ -27,8 +27,15 @@
             <li><a href="/hello.jsp">Contact</a></li>
 
             
-			<li><a href="/login">Login</a></li>
-			<li><a href="/join">Join</a></li>
+			<c:if test="${loginUser == null}">
+                <li><a href="/login">Login</a></li>
+                <li><a href="/join">Join</a></li>
+            </c:if>
+
+            <c:if test="${loginUser != null}">
+                <li><a href="#">MyPage</a></li>
+                <li><a href="/sign-out">Logout</a></li>
+            </c:if>
             
 
             

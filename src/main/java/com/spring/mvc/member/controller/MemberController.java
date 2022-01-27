@@ -1,13 +1,17 @@
 package com.spring.mvc.member.controller;
 
 import com.spring.mvc.member.domain.Member;
+import com.spring.mvc.member.service.LoginFlag;
 import com.spring.mvc.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @Log4j2
@@ -40,6 +44,30 @@ public class MemberController {
         log.info("/member/sign-up POST - " + member);
         memberService.signUp(member);
         return "redirect:/";
+    }
+
+    //로그인 화면 요청
+    @GetMapping("/login")
+    public String login() {
+        return "member/login";
+    }
+
+    //로그인 요청 처리
+    @PostMapping("/loginCheck")
+    public String login(String account, String password, Model model, HttpSession session) {
+        log.info("/loginCheck POST - " + account + ", " + password);
+        LoginFlag flag = memberService.login(account, password);
+        model.addAttribute("msg", flag);
+
+        //로그인 성공 시
+        if (flag == LoginFlag.SUCCESS) {
+            //세션에 로그인 정보를 기록
+            session.setAttribute("loginUser", memberService.getMember(account));
+            return "redirect:/";
+        }
+
+        //아이디 또는 비번이 틀린 경우
+        return "member/login";
     }
 
 }
